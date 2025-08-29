@@ -5,9 +5,9 @@ __pycache__/
 *.pyo
 
 # spider logs and data
-logs/snapshots
-logs/reports
-logs/chat
+spider/logs/snapshots
+spider/logs/reports
+spider/logs/chat
 
 # python environment
 venv/
