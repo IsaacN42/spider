@@ -1,0 +1,36 @@
+# cache directories
+.cache/
+__pycache__/
+*.pyc
+*.pyo
+
+# spider logs and data
+logs/snapshots/
+logs/reports/
+logs/chat/
+
+# python environment
+venv/
+.env
+*.egg-info/
+
+# temporary files
+*.tmp
+*.log
+.DS_Store
+*~
+
+# data directories that shouldn't be versioned
+data/knowledge_graph/
+data/chat_history/
+data/learning_data/
+
+# config files with sensitive info (if any)
+config/*_secrets.yml
+config/ssh_keys/
+
+# ide files
+.vscode/
+.idea/
+*.swp
+*.swo
