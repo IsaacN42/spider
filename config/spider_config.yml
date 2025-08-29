@@ -1,0 +1,34 @@
+# spider configuration
+scan_paths:
+  - "/etc"
+  - "/opt"
+  - "/var/log"
+
+scan_settings:
+  max_files_per_path: 1000
+  max_file_size: 50000
+  chunk_size: 10000
+
+llm_settings:
+  model_type: "placeholder"
+  max_context: 50000
+
+schedule:
+  full_scan_interval: "6h"
+  quick_scan_interval: "30m"
+
+exclusions:
+  - "proc"
+  - "sys" 
+  - "dev"
+  - "run"
+  - "tmp"
+  - "__pycache__"
+  - ".git"
+
+# zimaos awareness settings
+zimaos:
+  root_partition_full_normal: true
+  focus_data_partitions: true
+  casaos_containers_expected: true
+  overlay_filesystem_aware: true
