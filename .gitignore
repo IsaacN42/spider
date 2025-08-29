@@ -8,7 +8,9 @@ __pycache__/
 spider/logs/snapshots
 spider/logs/reports
 spider/logs/chat
-
+logs/snapshots
+logs/reports
+logs/chat
 # python environment
 venv/
 .env
