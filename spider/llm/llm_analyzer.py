@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# spider/llm/llm_analyzer.py
+
 """
 unified spider llm analyzer
 combines rule-based analysis with ollama integration

@@ -1,4 +1,4 @@
-# spider configuration
+# config\spider_config.yml
 scan_paths:
   - "/etc"
   - "/opt"

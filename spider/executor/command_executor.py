@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# spider/executor/command_executor.py
+
 """
 spider command executor
 safely executes whitelisted system commands with root privileges
