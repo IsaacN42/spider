@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "monitor": {
+      "command": "python",
+      "args": ["-m", "spider.mcp.servers.monitor"]
+    },
+    "knowledge": {
+      "command": "python",
+      "args": ["-m", "spider.mcp.servers.knowledge"]
+    },
+    "llm": {
+      "command": "python",
+      "args": ["-m", "spider.mcp.servers.llm"]
+    },
+    "orchestrator": {
+      "command": "python",
+      "args": ["-m", "spider.mcp.orchestrator.orchestrator"]
+    }
+  }
+}

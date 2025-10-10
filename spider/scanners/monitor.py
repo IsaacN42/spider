@@ -211,7 +211,11 @@ class FileChangeMonitor:
     
     def __init__(self, watch_dirs=None):
         self.tracker = INotifyTracker()
+<<<<<<< HEAD
         self.watch_dirs = watch_dirs or ['/etc', '/opt/spider', '/var/log']
+=======
+        self.watch_dirs = watch_dirs or ['/etc', '/home/abidan/spider', '/var/log']
+>>>>>>> 0de83c2 (spider homelab monitoring system)
         self.running = False
         
     def start_monitoring(self):
@@ -307,7 +311,11 @@ class MockFileMonitor:
 def start_file_monitoring(directories=None):
     # main entry point for spider integration
     if directories is None:
+<<<<<<< HEAD
         directories = ['/etc', '/opt/spider', '/var/log']
+=======
+        directories = ['/etc', '/home/abidan/spider', '/var/log']
+>>>>>>> 0de83c2 (spider homelab monitoring system)
     
     # try to start real monitoring first
     monitor = FileChangeMonitor(directories)

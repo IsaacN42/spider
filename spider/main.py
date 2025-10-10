@@ -35,11 +35,19 @@ class SpiderEnhanced:
         
         # default configuration
         default_config = {
+<<<<<<< HEAD
             'scan_directories': ['/etc', '/opt/spider', '/var/log'],
             'remote_servers': {},
             'ollama_host': 'localhost:11434',
             'data_path': '/opt/spider/data',
             'log_path': '/opt/spider/logs'
+=======
+            'scan_directories': ['/etc', '/home/abidan/spider', '/var/log'],
+            'remote_servers': {},
+            'ollama_host': 'localhost:11434',
+            'data_path': 'data',
+            'log_path': 'logs'
+>>>>>>> 0de83c2 (spider homelab monitoring system)
         }
         
         # try to load yaml config if available

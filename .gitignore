@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # cache directories
 .cache/
 __pycache__/
@@ -36,3 +37,21 @@ config/ssh_keys/
 .idea/
 *.swp
 *.swo
+=======
+__pycache__/
+*.pyc
+*.pyo
+*.db-journal
+.cache/
+logs/
+data/snapshots/*
+data/reports/*
+!data/.gitkeep
+models/primary/
+models/backup/
+!models/.gitkeep
+.venv/
+*.lock
+.DS_Store
+*.swp
+>>>>>>> 0de83c2 (spider homelab monitoring system)

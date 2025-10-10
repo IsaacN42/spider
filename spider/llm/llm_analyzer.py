@@ -95,12 +95,17 @@ class LLMAnalyzer:
                     usage_pct = int(fs.get('use_percent', '0%').rstrip('%'))
                     mount_point = fs.get('mount_point', fs.get('mountpoint', ''))
                     
+<<<<<<< HEAD
                     # zimaos root partition exception
                     if mount_point == '/' and usage_pct == 100:
                         # check if this might be zimaos
                         size = fs.get('size', '')
                         if '1.' in size and 'G' in size:  # ~1.2g root partition
                             continue  # normal for zimaos
+=======
+                    # normal ubuntu server disk usage expectations
+                    # no special exceptions needed for ubuntu server
+>>>>>>> 0de83c2 (spider homelab monitoring system)
                     
                     if usage_pct > 90:
                         issues.append(f"high disk usage on {mount_point}: {usage_pct}%")
@@ -224,6 +229,7 @@ class LLMAnalyzer:
         
         return usage_lines
     
+<<<<<<< HEAD
     def create_zimaos_aware_prompt(self, summary_data: Dict) -> str:
         """create analysis prompt with zimaos knowledge"""
         
@@ -235,11 +241,28 @@ class LLMAnalyzer:
         - casaos manages containerized applications
         - multiple overlay mounts for different services
         - small root partition contains only os files, not user data
+=======
+    def create_casaos_aware_prompt(self, summary_data: Dict) -> str:
+        """create analysis prompt with casaos knowledge"""
+        
+        casaos_knowledge = """
+        casaos on ubuntu server architecture knowledge:
+        - casaos runs on standard ubuntu server with normal partitioning
+        - casaos manages containerized applications via docker
+        - normal ubuntu disk usage expectations apply (no special exceptions)
+        - casaos provides web interface for app management
+        - home assistant typically runs as KVM VM
+        - standard ubuntu server monitoring applies
+>>>>>>> 0de83c2 (spider homelab monitoring system)
         """
         
         prompt = f"""you are spider, an expert homelab system administrator ai. analyze this system snapshot and provide actionable insights.
 
+<<<<<<< HEAD
 {zimaos_knowledge}
+=======
+{casaos_knowledge}
+>>>>>>> 0de83c2 (spider homelab monitoring system)
 
 system snapshot data:
 {json.dumps(summary_data, indent=2)}
@@ -266,10 +289,18 @@ provide analysis in this format:
 ## 🔮 predictions
 [what might happen if current trends continue]
 
+<<<<<<< HEAD
 important zimaos rules:
 - for zimaos servers: root partition at 100% is normal, focus on /data partition health
 - distinguish between system partitions and data partitions
 - casaos containers are expected and normal
+=======
+important casaos rules:
+- for casaos servers: normal ubuntu server disk usage expectations apply
+- casaos containers are expected and normal
+- home assistant VM status should be monitored
+- focus on standard ubuntu server health metrics
+>>>>>>> 0de83c2 (spider homelab monitoring system)
 
 be specific, practical, and focus on actionable insights."""
 
@@ -328,7 +359,11 @@ be specific, practical, and focus on actionable insights."""
             print("[*] analyzing with llama 3.1 8b...")
             try:
                 summary_data = self.prepare_snapshot_summary(snapshot)
+<<<<<<< HEAD
                 prompt = self.create_zimaos_aware_prompt(summary_data)
+=======
+                prompt = self.create_casaos_aware_prompt(summary_data)
+>>>>>>> 0de83c2 (spider homelab monitoring system)
                 analysis = self.query_ollama(prompt, max_tokens=3000)
                 
                 # add metadata

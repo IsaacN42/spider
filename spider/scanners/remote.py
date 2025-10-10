@@ -59,10 +59,17 @@ class RemoteScanner:
         docker_info = self.get_docker_info(host, user)
         
         # run server-specific checks
+<<<<<<< HEAD
         if server_type == 'zimaos':
             self.logger.info("  running zimaos-specific checks...")
             zimaos_info = self.get_zimaos_specific_info(host, user)
             system_info.update(zimaos_info)
+=======
+        if server_type == 'ubuntu_casaos':
+            self.logger.info("  running casaos-specific checks...")
+            casaos_info = self.get_casaos_specific_info(host, user)
+            system_info.update(casaos_info)
+>>>>>>> 0de83c2 (spider homelab monitoring system)
         
         return {
             'status': 'connected',
@@ -76,10 +83,17 @@ class RemoteScanner:
     
     def detect_server_type(self, host, user):
         """detect what type of server this is"""
+<<<<<<< HEAD
         # check for zimaos
         zima_check = self.run_remote_command(host, user, "ls /etc/casaos 2>/dev/null && echo 'zimaos'")
         if zima_check and 'zimaos' in zima_check:
             return 'zimaos'
+=======
+        # check for casaos on ubuntu
+        casaos_check = self.run_remote_command(host, user, "ls /etc/casaos 2>/dev/null && casaos -v 2>/dev/null")
+        if casaos_check and '/etc/casaos' in casaos_check:
+            return 'ubuntu_casaos'
+>>>>>>> 0de83c2 (spider homelab monitoring system)
         
         # check for other distros
         os_release = self.run_remote_command(host, user, "cat /etc/os-release 2>/dev/null")
@@ -93,15 +107,24 @@ class RemoteScanner:
         
         return 'linux'
     
+<<<<<<< HEAD
     def get_zimaos_specific_info(self, host, user):
         """get zimaos-specific information"""
+=======
+    def get_casaos_specific_info(self, host, user):
+        """get casaos-specific information"""
+>>>>>>> 0de83c2 (spider homelab monitoring system)
         info = {}
         
         # casaos version
         casaos_version = self.run_remote_command(host, user, "casaos -v 2>/dev/null || echo 'unknown'")
         info['casaos_version'] = casaos_version.strip() if casaos_version else 'unknown'
         
+<<<<<<< HEAD
         # zimaos partitioning info
+=======
+        # ubuntu server partitioning info
+>>>>>>> 0de83c2 (spider homelab monitoring system)
         lsblk_output = self.run_remote_command(host, user, "lsblk -J")
         if lsblk_output:
             try:
@@ -110,11 +133,25 @@ class RemoteScanner:
             except:
                 pass
         
+<<<<<<< HEAD
         # casaos apps
+=======
+        # casaos apps (docker containers)
+>>>>>>> 0de83c2 (spider homelab monitoring system)
         apps_info = self.run_remote_command(host, user, "docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Image}}' 2>/dev/null")
         if apps_info:
             info['casaos_apps'] = apps_info.strip()
         
+<<<<<<< HEAD
+=======
+        # check for home assistant VM
+        ha_vm_check = self.run_remote_command(host, user, "virsh list --name 2>/dev/null | grep -i homeassistant || echo 'not_found'")
+        if ha_vm_check and 'homeassistant' in ha_vm_check.lower():
+            info['homeassistant_vm'] = 'running'
+        else:
+            info['homeassistant_vm'] = 'not_found'
+        
+>>>>>>> 0de83c2 (spider homelab monitoring system)
         return info
     
     def get_disk_info(self, host, user, server_type):
@@ -136,14 +173,21 @@ class RemoteScanner:
                         'mountpoint': parts[5]
                     }
                     
+<<<<<<< HEAD
                     # add zimaos context
                     if server_type == 'zimaos':
                         filesystem['zimaos_type'] = self.classify_zimaos_partition(parts[5], parts[1])
+=======
+                    # add casaos context
+                    if server_type == 'ubuntu_casaos':
+                        filesystem['casaos_type'] = self.classify_casaos_partition(parts[5], parts[1])
+>>>>>>> 0de83c2 (spider homelab monitoring system)
                     
                     disk_info['filesystems'].append(filesystem)
         
         return disk_info
     
+<<<<<<< HEAD
     def classify_zimaos_partition(self, mountpoint, size):
         """classify zimaos partition types"""
         if mountpoint == '/':
@@ -156,6 +200,20 @@ class RemoteScanner:
             return 'boot'
         elif '/mnt/overlay' in mountpoint:
             return 'overlay'
+=======
+    def classify_casaos_partition(self, mountpoint, size):
+        """classify casaos partition types"""
+        if mountpoint == '/':
+            return 'system_root'  # normal ubuntu root partition
+        elif mountpoint in ['/home', '/DATA', '/media']:
+            return 'user_data'    # main data storage
+        elif '/var/lib' in mountpoint:
+            return 'service_data' # docker/app data
+        elif mountpoint == '/boot':
+            return 'boot'
+        elif '/mnt' in mountpoint:
+            return 'mount_point'
+>>>>>>> 0de83c2 (spider homelab monitoring system)
         else:
             return 'other'
     

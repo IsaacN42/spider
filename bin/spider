@@ -1,0 +1,5 @@
+#!/bin/bash
+# main spider cli entry point
+cd ~/spider
+source ~/.venv/bin/activate
+python3 -m spider.main "$@"
