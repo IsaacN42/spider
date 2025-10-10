@@ -31,7 +31,8 @@ data/learning_data/
 # config files with sensitive info (if any)
 config/*_secrets.yml
 config/ssh_keys/
-
+data/archive/spider_knowledge.db
+data/spider_knowledge.db
 # ide files
 .vscode/
 .idea/
