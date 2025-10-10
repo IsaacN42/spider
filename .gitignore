@@ -56,3 +56,5 @@ models/backup/
 .DS_Store
 *.swp
 >>>>>>> 0de83c2 (spider homelab monitoring system)
+.git_backup_*
+data/archive/
