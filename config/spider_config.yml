@@ -29,8 +29,9 @@ exclusions:
 # remote server configurations
 remote_servers:
   sanctum:
-    host: "192.168.1.254"  # Your br0 bridge IP
-    user: "spider"  # Your actual username
+    host: "192.168.1.254"
+    user: "abidan"
+    ssh_key: "/home/spider/.ssh/spider_remote"
 
 # casaos awareness settings
 casaos:

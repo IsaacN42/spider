@@ -12,7 +12,7 @@ import time
 import re
 from datetime import datetime
 from typing import Dict, Any, List
-from prometheus_client import Gauge, Counter
+# from prometheus_client import Gauge, Counter
 
 class OSQueryScanner:
     def __init__(self):
