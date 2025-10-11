@@ -20,11 +20,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 class KnowledgeGraphDB:
     # sqlite-based storage for file relationships and system snapshots
     
-<<<<<<< HEAD
-    def __init__(self, db_path="/opt/spider/data/knowledge.db"):
-=======
     def __init__(self, db_path="data/archive/spider_knowledge.db"):
->>>>>>> 0de83c2 (spider homelab monitoring system)
         self.db_path = db_path
         self.conn = None
         self._initialize_database()
@@ -337,11 +333,7 @@ class KnowledgeGraphDB:
 def create_knowledge_graph(db_path=None):
     # factory function for knowledge graph creation
     if db_path is None:
-<<<<<<< HEAD
-        db_path = "/opt/spider/data/knowledge.db"
-=======
         db_path = "data/archive/spider_knowledge.db"
->>>>>>> 0de83c2 (spider homelab monitoring system)
     return KnowledgeGraphDB(db_path)
 
 def update_graph_from_spider_data(graph, snapshot):
