@@ -26,23 +26,14 @@ exclusions:
   - "__pycache__"
   - ".git"
 
-<<<<<<< HEAD
-# zimaos awareness settings
-zimaos:
-  root_partition_full_normal: true
-  focus_data_partitions: true
-  casaos_containers_expected: true
-  overlay_filesystem_aware: true
-=======
 # remote server configurations
 remote_servers:
   sanctum:
     host: "192.168.1.254"  # Your br0 bridge IP
-    user: "abidan"  # Your actual username
+    user: "spider"  # Your actual username
 
-# casaos awareness settings (replacing zimaos)
+# casaos awareness settings
 casaos:
   ubuntu_server_detection: true
   casaos_containers_expected: true
   normal_disk_usage_expectations: true
->>>>>>> 0de83c2 (spider homelab monitoring system)
