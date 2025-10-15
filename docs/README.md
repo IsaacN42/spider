@@ -1,71 +1,93 @@
 # Spider Homelab Intelligence System
 
 ## Overview
+Spider is an AI-powered homelab monitoring and diagnostic system that provides comprehensive visibility, automated analysis, and intelligent recommendations across your distributed home infrastructure.
 
-Spider is an AI-powered homelab monitoring and diagnostic system designed to intelligently manage, scan, analyze, and report on the state of a distributed home infrastructure. It provides expert diagnostics, recommendations, and visibility into system health across compute, networking, and storage nodes.
+## Core Purpose
+- **System monitoring**: real-time health tracking across all homelab nodes
+- **AI diagnostics**: intelligent problem detection and solution recommendations
+- **Automated reporting**: structured health reports and trend analysis
+- **Cross-system intelligence**: understand relationships between services and systems
 
-## Features
+## Key Features
+- Multi-system remote scanning via SSH (Sanctum, Fathom, Haven)
+- Domain-specific knowledge (CasaOS, KVM, Docker environments)
+- AI-powered health assessment using Ollama + Llama 3.1 8B
+- Snapshot comparison and change detection
+- Predictive analytics (storage capacity, performance trends)
+- JSON data storage with markdown report generation
 
-* Real-time monitoring of system health
-* Automated scanning and anomaly detection
-* AI-driven diagnostic recommendations
-* Log collection and structured reporting
-* Homelab resource inventory tracking
-* Configurable alerts and notifications
+## Quick Start
 
-## Installation
-
+### Installation
 ```bash
 # clone repository
 git clone https://github.com/yourusername/spider.git
 cd spider
 
 # create virtual environment
-uv venv python3.10
-
-# activate venv
+python3 -m venv .venv
 source .venv/bin/activate
 
 # install dependencies
 pip install -r requirements.txt
 ```
 
-## Homelab Hardware
-
-* **Sanctum**: Dell Precision 5520 laptop running Linux (Home Assistant hub)
-* **Fathom**: Ryzen 7 3700X / RTX 3060 AI workstation for compute-intensive tasks
-* **Haven**: planned TrueNAS storage server
-
-## Usage
-
-Run Spider via the CLI orchestrator:
-
+### Basic Usage
 ```bash
-python orchestrate.py --scan all
+# local system scan
+./bin/spider --scan --analyze
+
+# include remote systems
+./bin/spider --scan --remote --analyze
+
+# continuous monitoring
+./bin/spider --daemon
+
+# compare snapshots
+./bin/spider --compare
 ```
 
-Example scan options:
+## Monitored Systems
+- **Sanctum**: Dell Precision 5520 laptop (Ubuntu 24.04.3 LTS + CasaOS)
+- **Fathom**: Ryzen 7 3700X + RTX 3060 (Ubuntu Server, AI workstation)
+- **Haven**: Dell XPS 8900 (future deployment, ready for monitoring)
 
-* `--scan network`
-* `--scan storage`
-* `--scan compute`
+## Architecture
+Spider uses a three-layer architecture:
+1. **Scanning layer**: filesystem, docker, network, system metrics
+2. **Analysis layer**: AI-powered health assessment and diagnostics
+3. **Reporting layer**: JSON snapshots + markdown reports
 
-## Roadmap
+## Integration
+- **Prometheus metrics**: exports for Grafana dashboards on Sanctum
+- **SSH remote access**: secure key-based authentication
+- **Ollama AI**: local LLM for intelligent analysis
+- **Docker awareness**: container health and performance monitoring
 
-* [ ] System integration with Home Assistant
-* [ ] Expanded AI diagnostics
-* [ ] Grafana dashboard support
-* [ ] Automated remediation routines
-* [ ] Discord/Matrix bot notifications
+## Data Storage
+```
+spider/
+├── logs/
+│   ├── snapshots/     # JSON system state captures
+│   └── reports/       # AI-generated markdown reports
+└── config/
+    └── spider_config.yml  # system configuration
+```
 
-## Integrations
+## Access
+- **Primary host**: Fathom (`/home/abidan/spider/`)
+- **User**: `spider` (dedicated system user with sudo privileges)
+- **Remote targets**: Sanctum, Haven (via SSH)
 
-* **Grafana**: for data visualization and dashboards
-* **Home Assistant**: for smart home integration
-* **Discord/Matrix**: for alerting and notifications
+## Status
+**Production**: Active monitoring on Fathom + Sanctum
+**Development**: Continuous improvement (see IMPROVEMENT_PLAN.md)
 
-## Shopping List (Upcoming Hardware)
+## Documentation
+- `ARCHITECTURE.md` - technical implementation details
+- `HOMELAB_INVENTORY.md` - complete hardware and service inventory
+- `IMPROVEMENT_PLAN.md` - 1-month intensive development roadmap
 
-* TrueNAS components for Haven storage node
-* Additional network switches/APs
-* Smart sensors for environment monitoring
+## Philosophy
+Spider is a **silent observer** - it monitors, analyzes, and reports without requiring conversation or interaction. It provides the factual foundation that Oracle (the conversational AI assistant) can query when needed.
