@@ -32,9 +32,10 @@ pip install -r requirements.txt
 
 ## Homelab Hardware
 
-* **Sanctum**: Dell Precision 5520 laptop running Linux (Home Assistant hub)
-* **Fathom**: Ryzen 7 3700X / RTX 3060 AI workstation for compute-intensive tasks
-* **Haven**: planned TrueNAS storage server
+* ** Sanctum **: Dell Precision 5520 laptop running Linux (Home Assistant hub)
+* ** Fathom **: Ryzen 7 3700X / 2x RTX 3060 AI workstation for compute-intensive tasks
+* ** Haven **: planned TrueNAS storage server
+* ** Amalgam **: Bambulab P1S 3D Printer
 
 ## Usage
 
